@@ -1,0 +1,126 @@
+body {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #000;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+.accordion {
+  max-width: 500px;
+  margin: 20px auto;
+  cursor: pointer;
+}
+
+.item {
+  border-top: 1px solid gray;
+  position: relative;
+  
+}
+
+.item-title {
+  display: block;
+  padding: 10px 15px;
+  transition: background .3s ease-out;
+  color: blue;
+  position: relative;
+}
+
+.item-title-close {
+  display: none;
+  position: absolute;
+	top: 50%;
+	right: 15px;
+	width: 15px;
+	height: 15px;
+	cursor: pointer;
+  transform: translateY(-50%);
+  transition: opacity ease 0.5s;
+}
+
+.item-title-close::before,
+.item-title-close::after { 
+  content: '';
+	position: absolute;
+	top: 5px;
+	display: block;
+	width: 14px;
+	height: 3px;
+	background: #000;
+  transition: all 300ms;
+}
+
+.item-title-close::before {
+	transform: rotate(90deg);
+}
+
+.item-title-close::after {
+	transform: rotate(180deg);
+}
+
+.item-input:checked ~ .item-title {
+  color: #000;
+}
+
+.accordion:hover .item-title {
+  color: #000;
+}
+
+.accordion:hover .item-title-close {
+  display: block;
+}
+
+.item-input:checked ~ .item-title:after {
+  border-width: 0 5px 8px 5px;
+  border-color: transparent transparent #ffffff transparent;
+}
+
+.item-input:checked ~ .item-title .item-title-close::before,
+.item:hover .item-title-close::before {
+  transform: rotate(45deg);
+}
+
+.item-input:checked ~ .item-title .item-title-close::after,
+.item:hover .item-title-close::after {
+	transform: rotate(-45deg);
+}
+
+.item-input {
+  width: 0;
+  height: 0;
+  -webkit-appearance: none;
+  appearance: none;
+  position: absolute;
+}
+
+@keyframes scale {
+  from {
+    scale: 0;
+  }
+
+  to {
+    scale: 1;
+  }
+}
+
+.item-input:checked ~ .item-text,
+.item:hover .item-text {
+  display: block;
+  animation-name: scale;
+  animation-duration: 600ms;
+}
+
+.item-text {
+  display: none;
+  font-size: 14px;
+}
+
+.item-text img {
+  display: block;
+  margin: 10px auto;
+}
